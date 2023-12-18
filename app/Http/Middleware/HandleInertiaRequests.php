@@ -40,6 +40,9 @@ class HandleInertiaRequests extends Middleware
             'flash' => [
                 'success' => session('message'),
             ],
+            'user' => fn () => $request->user()
+                ? $request->user()->only('id', 'name', 'email')
+                : null,
             'locale' => app()->getLocale()
         ]);
     }
